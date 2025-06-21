@@ -29,3 +29,42 @@ To use this system correctly, ensure your **network prefab** is set up with the 
 Attach the `NetworkParentSynchronizer` to the **nearest authoritative parent** or container object in the hierarchy.
 
 Example structure:
+Player (NetworkParentSynchronizer)
+└── Arm
+└── Hand (actual parent of the child object)
+
+You can configure the `NetworkParentSynchronizer` either in the editor or dynamically via code.
+
+![Parent Synchronizer Setup](https://github.com/user-attachments/assets/acd02cc2-fec3-449a-9e69-5088254fb1c3)
+
+---
+
+## 🛠️ Usage
+
+### Static Parenting (e.g. at spawn):
+Configure `NetworkParentSynchronizer` in the Inspector with preset parent references.
+
+### Dynamic Parenting (e.g. during runtime):
+Use scripting to assign parent references and trigger synchronization manually.
+
+> ⚠️ **Important:** `NetworkParentSynchronizer` must always be present **somewhere above** the intended parent in the object hierarchy.
+
+---
+
+## 🧪 Tested Model
+
+- ✅ **Distributed Authority Model**  
+- ❌ Not tested in Server- or Host-authority modes (PRs welcome)
+
+---
+
+## 📌 Notes
+
+- This system is designed to bypass limitations in NGO’s default parenting and syncing behavior.
+- It’s lightweight and customizable — ideal for use cases like item pickup, weapon attachment, or modular avatars.
+
+---
+
+## 📄 License
+
+MIT License — free to use and modify with attribution.
